@@ -30,7 +30,7 @@ async function getToken() {
 async function sendMultipart(cloud_folder,filePath,originalname) {
     let access_token = await getToken()
     let cloudurl = `https://api.weixin.qq.com/tcb/invokecloudfunction?access_token=${access_token}&env=${config.ENV}&name=upload`;
-    let rs = await streamToBuffer(fs.createReadStream(filePath));
+    let rs = await streamToBuffer(fs.createReadStream(filePath));  //这里其实直接readfilesync 直接就是buff，搞复杂了
     let requestData = {};
     requestData.fileStream =  rs
     requestData.action = 'uploadbybuffer',
